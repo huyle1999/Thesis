@@ -82,6 +82,11 @@ for i in range(0,len(df_dropped_2)):
     else:
         df_dropped_2['Quan'][i]=23  
 for i in range(0,len(df_dropped_2)):
+    if df_dropped_2['TinhTrangBDS'][i]=='Đã bàn giao':
+        df_dropped_2['TinhTrangBDS'][i]=1
+    else:
+        df_dropped_2['TinhTrangBDS'][i]=2
+for i in range(0,len(df_dropped_2)):
     if df_dropped_2['Loai'][i]=='Chung cư':
         df_dropped_2['Loai'][i]=1
     elif df_dropped_2['Loai'][i]=='Căn hộ dịch vụ':
