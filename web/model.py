@@ -13,7 +13,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
 #rd_data=pd.read_csv("C:\\Users\\Administrator\\Desktop\\New folder (9)\\web\\AB_NYC_2019.csv")
-df=pd.read_csv("C:\\Users\\Administrator\\Desktop\\New folder (9)\\web\\united2.csv")
+df=pd.read_csv("C:\\Users\\Administrator\\Desktop\\Khoaluan\\web\\united2.csv")
+
 df['Rank'] = df.USD.copy()
 df_1 = df[df['USD'] < 50000]
 df_2 = df[(df['USD'] >= 50000) & (df['USD'] < 100000)]
@@ -29,23 +30,101 @@ df.isna().sum()/df.shape[0]*100
 per = 0.5 # Chọn xóa những cột dữ liệu có trên 50% data là NaN
 df_dropped = df.dropna(axis=1,thresh=int(df.shape[0]*per))
 df_dropped_2 = df_dropped.dropna(how='any')
+df_dropped_2.to_csv('united3.csv',encoding="utf-8-sig",index=False)
+df_dropped_2=pd.read_csv("united3.csv")
 #df_dropped_2 = df_dropped.dropna(axis=0,thresh=int(df.shape[1]*0.5))
 df_dropped_2
+for i in range(0,len(df_dropped_2)):
+    if df_dropped_2['Quan'][i]==' Quận 1':
+        df_dropped_2['Quan'][i]=1
+    elif df_dropped_2['Quan'][i]==' Quận 2':
+        df_dropped_2['Quan'][i]=2
+    elif df_dropped_2['Quan'][i]==' Quận 3':
+        df_dropped_2['Quan'][i]=3
+    elif df_dropped_2['Quan'][i]==' Quận 4':
+        df_dropped_2['Quan'][i]=4
+    elif df_dropped_2['Quan'][i]==' Quận 5':
+        df_dropped_2['Quan'][i]=5
+    elif df_dropped_2['Quan'][i]==' Quận 6':
+        df_dropped_2['Quan'][i]=6
+    elif df_dropped_2['Quan'][i]==' Quận 7':
+        df_dropped_2['Quan'][i]=7
+    elif df_dropped_2['Quan'][i]==' Quận 8':
+        df_dropped_2['Quan'][i]=8
+    elif df_dropped_2['Quan'][i]==' Quận 9':
+        df_dropped_2['Quan'][i]=9
+    elif df_dropped_2['Quan'][i]==' Quận 10':
+        df_dropped_2['Quan'][i]=10
+    elif df_dropped_2['Quan'][i]==' Quận 11':
+        df_dropped_2['Quan'][i]=11
+    elif df_dropped_2['Quan'][i]==' Quận 12':
+        df_dropped_2['Quan'][i]=12
+    elif df_dropped_2['Quan'][i]==' Quận Bình Tân':
+        df_dropped_2['Quan'][i]=13 
+    elif df_dropped_2['Quan'][i]==' Quận Thủ Đức':
+        df_dropped_2['Quan'][i]=14
+    elif df_dropped_2['Quan'][i]==' Quận Bình Thạnh':
+        df_dropped_2['Quan'][i]=15 
+    elif df_dropped_2['Quan'][i]==' Huyện Bình Chánh':
+        df_dropped_2['Quan'][i]=16
+    elif df_dropped_2['Quan'][i]==' Quận Tân Bình':
+        df_dropped_2['Quan'][i]=17  
+    elif df_dropped_2['Quan'][i]==' Huyện Nhà Bè':
+        df_dropped_2['Quan'][i]=18
+    elif df_dropped_2['Quan'][i]==' Quận Tân Phú':
+        df_dropped_2['Quan'][i]=19
+    elif df_dropped_2['Quan'][i]==' Quận Gò Vấp':
+        df_dropped_2['Quan'][i]=20
+    elif df_dropped_2['Quan'][i]==' Quận Phú Nhuận':
+        df_dropped_2['Quan'][i]=21
+    elif df_dropped_2['Quan'][i]==' Huyện Hóc Môn':
+        df_dropped_2['Quan'][i]=22
+    else:
+        df_dropped_2['Quan'][i]=23  
+for i in range(0,len(df_dropped_2)):
+    if df_dropped_2['TinhTrangBDS'][i]=='Đã bàn giao':
+        df_dropped_2['TinhTrangBDS'][i]=1
+    else:
+        df_dropped_2['TinhTrangBDS'][i]=2
+for i in range(0,len(df_dropped_2)):
+    if df_dropped_2['Loai'][i]=='Chung cư':
+        df_dropped_2['Loai'][i]=1
+    elif df_dropped_2['Loai'][i]=='Căn hộ dịch vụ':
+        df_dropped_2['Loai'][i]=2
+    elif df_dropped_2['Loai'][i]=='Duplex':
+        df_dropped_2['Loai'][i]=3
+    elif df_dropped_2['Loai'][i]=='Officetel':
+        df_dropped_2['Loai'][i]=4
+    elif df_dropped_2['Loai'][i]=='Penthouse':
+        df_dropped_2['Loai'][i]=5
+    elif df_dropped_2['Loai'][i]=='Căn hộ dịch vụ, mini':
+        df_dropped_2['Loai'][i]=6
+    else:
+        df_dropped_2['Loai'][i]=7
+for i in range(0,len(df_dropped_2)):
+    if df_dropped_2['TinhTrangNoiThat'][i]=='Hoàn thiện cơ bản':
+        df_dropped_2['TinhTrangNoiThat'][i]=1
+    elif df_dropped_2['TinhTrangNoiThat'][i]=='Nội thất đầy đủ':
+        df_dropped_2['TinhTrangNoiThat'][i]=2
+    elif df_dropped_2['TinhTrangNoiThat'][i]=='Nội thất cao cấp':
+        df_dropped_2['TinhTrangNoiThat'][i]=3
+    else:
+        df_dropped_2['TinhTrangNoiThat'][i]=4
+for i in range(0,len(df_dropped_2)):
+    if df_dropped_2['GiayTo'][i]=='Đã có sổ':
+        df_dropped_2['GiayTo'][i]=1
+    elif df_dropped_2['GiayTo'][i]=='Đang chờ sổ':
+        df_dropped_2['GiayTo'][i]=2
+    else:
+        df_dropped_2['GiayTo'][i]=3
 df_x = df_dropped_2.iloc[:, 1:9]
-
 df_y = df_dropped_2.iloc[:, 10]
-df_y
-data_dummies = pd.get_dummies(df_x, drop_first=True)
-data_dummies = data_dummies.astype(float)
-cols = data_dummies.columns.values
-data_preprocessed = data_dummies[cols]
-
-test = data_preprocessed.iloc[:,0:3]
 scaler = StandardScaler()
-scaler.fit(test)
-X,X_test,Y,Y_test = train_test_split(test,df_y,test_size=0.2,random_state=365)
+scaler.fit(df_x)
+data_preprocessed = scaler.transform(df_x)
+X,X_test,Y,Y_test = train_test_split(data_preprocessed,df_y,test_size=0.2,random_state=365)
 reg = LinearRegression().fit(X, Y)
-reg.predict(X_test)
+
 # total null valves
 # rd_data.isnull().sum()
 
