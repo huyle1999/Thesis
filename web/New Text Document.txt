@@ -1,5 +1,0 @@
-tong quan de tai  
-co so ly thuyet
-mo hinh thuc hien:linear regression
-ket qua nghien cuu
-nhan xet,huong phat trien

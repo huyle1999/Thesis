@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
 <head>
   <meta charset="UTF-8">
-  <title>ML API</title>
+  <title>Web dự đoán bất động sản</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -15,11 +14,7 @@
 <body>
  <div class="login">
 	<h1>Đoán giá nhà dựa trên trang chợ tốt</h1>
-
-     <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
-    	<!--input type="text" name="room_type" id="room type" placeholder="1] Private Room 2] Entire Room 3] shared Room" required="required"  /-->
-            <!--label for="room type">Type of room</label-->
             <select id="Quan" name="Quan" selected="Quan" >
               <option value="1">Quận 1</option>
               <option value="2">Quận 2</option>
@@ -49,6 +44,10 @@
               <option value="1">Đã bàn giao</option>
               <option value="2">Chưa bàn giao</option>
              </select>
+		<input type="text" name="Diện tích" placeholder="Diện tích" required="required"  />
+        <input type="text" name="Số lượng phòng ngủ" placeholder="Số lượng phòng ngủ:" required="required"  />
+        <input type="text" name="Số lượng phòng tắm" placeholder="Số lượng phòng tắm" required="required"  />
+
 			<select id="Loai" name="Loai" selected="Loai" >
               <option value="1">Chung cư</option>
               <option value="2">Căn hộ dịch vụ</option>
@@ -58,24 +57,18 @@
 			  <option value="6">Căn hộ dịch vụ, mini</option>
 			  <option value="7">Tập thể, cư xá</option>
              </select>
+			<select id="GiayTo" name="GiayTo" selected="GiayTo" >
+              <option value="1">Đã có sổ </option>
+              <option value="2">Đang chờ sổ </option>
+			  <option value="3">Giấy tờ khác</option>
+			 </select>
 			<select id="TinhTrangNoiThat" name="TinhTrangNoiThat" selected="TinhTrangNoiThat" >
               <option value="1">Hoàn thiện cơ bản</option>
               <option value="2">Nội thất đầy đủ </option>
 			  <option value="3">Nội thất cao cấp</option>
 			  <option value="4">Bàn giao thô </option>
              </select>
-			<select id="GiayTo" name="GiayTo" selected="GiayTo" >
-              <option value="1">Đã có sổ </option>
-              <option value="2">Đang chờ sổ </option>
-			  <option value="3">Giấy tờ khác</option>
-			 </select>
-      
-          
-        <input type="text" name="number_of_review" placeholder="Diện tích" required="required"  />
-        <input type="text" name="calculated_host_listings_count" placeholder="Số lượng phòng ngủ:" required="required"  />
-        <input type="text" name="availability_365" placeholder="Số lượng phòng tắm" required="required"  />
-
-        		<!--input type="text" name="interview_score" placeholder="Interview Score" required="required" /-->
+			
         <button type="submit" class="btn btn-primary btn-block btn-large">Đoán</button>
     </form>
     
